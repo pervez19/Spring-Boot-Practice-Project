@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="eng" xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+ <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+<h1>Welcome to your Profile</h1>
+<hr>
+	<table  class="table table-bordered table-striped ">
+		<thead class="thead-dark">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+				<th>Roles</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr >
+				<td th:text="${employee.firstName}"/>
+				<td th:text="${employee.lastName}"/>
+				<td th:text="${employee.email}"/>
+				<td>
+					<ol >
+						<li th:each="role:${employee.roles}" th:text="${role.name}"/>
+					</ol>
+				</td>
+				<td>
+				    <a th:href="@{/showFromForUpdate(employeeId=${employee.id})}"
+							class="btn btn-info btn-sm">
+							Update
+					</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div sec:authorize="hasRole('ROLE_ADMIN')">
+	  <a th:href="@{/list}">Admin</a>
+	</div>
+	
+	
+	
+	<form th:action="@{/logout}" 
+			   method="POST">
+	
+		<input type="submit" value="Logout" />
+	
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="eng" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+ <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+<title>Insert title here</title>
+</head>
+<body>
+  <div id="loginbox" style="margin-top: 50px;"
+			class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
+  	<h1>Login</h1>
+  	<hr>
+  	<form action="#" th:action="@{/authenticateTheUser}" method="post">
+  		
+  		<div th:if="${param.error}" class="alert alert-danger col-xs-offset-1 col-xs-10">
+				Invalid username and password.
+		</div>
+  		<div th:if="${param.logout}"class="alert alert-success col-xs-offset-1 col-xs-10">
+			    You have been logged out.
+		</div>
+  		<input type="text" name="username" placeholder="username" class="form-control">
+  		
+  		<input type="password" name="password" placeholder="password" class="form-control" >
+  		
+  <!--  <input type="text" th:field="*{username}" placeholder="username"/> 
+  		<input type="password" th:field="*{password}" placeholder="password"/>
+  -->
+  		<button type="submit">Login</button>
+	<div>
+		<a th:href="@{/register/registrationForm}" >Register New User</a>
+	</div>
+  	</form>
+
+  </div>
+  
+</body>
+</html>

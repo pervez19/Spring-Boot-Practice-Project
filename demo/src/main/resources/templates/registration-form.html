@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="eng" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+ <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+<title>Registration Form</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Registration Form</h1>
+		<hr>
+	<!-- 	<div th:if="${param.success}" class="alert alert-info col-xs-offset-1 col-xs-10">
+			<span th:text="'You've Successfully Registered'"></span>-->	
+		</div>	
+		<form action=# th:action="@{/register/processRegistrationForm}"
+					method="post" th:object="${employeeRegDeto}">
+				
+		<div th:if="${registrationError}" class="alert alert-danger col-xs-offset-1 col-xs-10">
+			<span th:text="${registrationError}"></span>
+		</div>		
+				
+					
+		 	<input type="text" th:field="*{username}" placeholder="username *" 
+		 	class="form-control mb-4 col-4"/>
+		 	<div th:if="${#fields.hasErrors('username')}"style="margin-bottom: 25px" class="text-danger">
+			<ul>
+				<li th:each="err : ${#fields.errors('username')}" th:text="'' + ${err}" />
+			</ul>						
+			</div>
+		 	
+		 	<input type="password" th:field="*{password}" placeholder="Password *" 
+		 	class="form-control mb-4 col-4"/>
+		 	<div th:if="${#fields.hasErrors('password')}"style="margin-bottom: 25px" class="text-danger">
+			<ul>
+				<li th:each="err : ${#fields.errors('password')}" th:text="'' + ${err}" />
+			</ul>						
+			</div>
+		 	
+		 	<input type="password" th:field="*{matchingPassword}" placeholder="Confirm Password *" 
+		 	class="form-control mb-4 col-4"/>
+		 	<div th:if="${#fields.hasErrors('matchingPassword')}"style="margin-bottom: 25px" class="text-danger">
+			<ul>
+				<li th:each="err : ${#fields.errors('matchingPassword')}" th:text="' ' + ${err}" />
+			</ul>						
+			</div>
+		 	
+		 	<input type="text" th:field="*{firstName}" placeholder="First Name *" 
+		 	class="form-control mb-4 col-4"/>
+		 	<div th:if="${#fields.hasErrors('firstName')}"style="margin-bottom: 25px" class="text-danger">
+			<ul>
+				<li th:each="err : ${#fields.errors('firstName')}" th:text="'' + ${err}" />
+			</ul>						
+			</div>
+		 	
+		 	<input type="text" th:field="*{lastName}" placeholder="Last Name *" 
+		 	class="form-control mb-4 col-4"/>
+		 	<div th:if="${#fields.hasErrors('lastName')}"style="margin-bottom: 25px" class="text-danger">
+			<ul>
+				<li th:each="err : ${#fields.errors('lastName')}" th:text="'' + ${err}" />
+			</ul>						
+			</div>
+		 	
+		 	<input type="text" th:field="*{email}" placeholder="abc@email.com *" 
+		 	class="form-control mb-4 col-4"/>
+		 	<div th:if="${#fields.hasErrors('email')}"style="margin-bottom: 25px" class="text-danger">
+			<ul>
+				<li th:each="err : ${#fields.errors('email')}" th:text="'' + ${err}" />
+			</ul>						
+			</div>
+		
+			<button type="submit" class="btn btn-info col-2">Register</button>  
+		
+		</form>
+	<div>
+		<span>Already Registered? <a th:href="@{/showMyLoginPage}">login here</a></span>
+	</div>
+	</div>
+</body>
+</html>
